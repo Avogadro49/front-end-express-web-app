@@ -5,14 +5,29 @@ import "./navbar.css";
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <ul className="nav-links">
-        <li>
-          <Link to="/bootcamps">Bootcamps</Link>
-        </li>
-        <li>
-          <Link to="/courses">Courses</Link>
-        </li>
-      </ul>
+      <div>
+        <ul className="nav-links">
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/bootcamps">Bootcamps</Link>
+          </li>
+          <li>
+            <Link to="/courses">Courses</Link>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <ul className="nav-links">
+          <li>
+            <Link to="/signup">Sign Up</Link>
+          </li>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 };
