@@ -1,5 +1,7 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import { fetchData } from "../utils/api";
+import "./ListStyles.css";
 
 const Bootcamps = () => {
   const [bootcamps, setBootcamps] = useState([]);
@@ -22,11 +24,14 @@ const Bootcamps = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
-      <h2>Bootcamps</h2>
+    <div className="list-container">
+      <h2 className="title">Bootcamps</h2>
       <ul>
         {bootcamps.map((bootcamp) => (
-          <li key={bootcamp.id}>{bootcamp.name}</li>
+          <li key={bootcamp.id} className="list-item">
+            <h3>{bootcamp.name}</h3>
+            <p>{bootcamp.description}</p>
+          </li>
         ))}
       </ul>
     </div>
