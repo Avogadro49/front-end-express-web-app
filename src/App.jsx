@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Bootcamps from "./components/bootcamps/Bootcamps";
+import BootcampCourses from "./components/bootcampCourses/BootcampCourses"
 import Courses from "./components/courses/Courses";
 import Navbar from "./components/navbar/Navbar";
 import SignUp from "./components/auth/Signup";
@@ -16,6 +17,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/bootcamps" element={<Bootcamps />} />
+        <Route path="/bootcamps/:bootcampId/courses" element={<BootcampCourses />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />

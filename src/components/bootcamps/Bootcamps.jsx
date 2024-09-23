@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { fetchData } from "../../utils/api";
 import style from "./ListStyles.module.css";
 
@@ -7,6 +8,11 @@ const Bootcamps = () => {
   const [bootcamps, setBootcamps] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedCourses, setSelectedCourses] = useState([]);
+  const [loadingCourses, setLoadingCourses] = useState(false);
+  const [errorCourses, setErrorCourses] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchData("bootcamps")
@@ -19,6 +25,23 @@ const Bootcamps = () => {
         setLoading(false);
       });
   }, []);
+
+  const handleCheckItOut = async (bootcampId) => {
+    setLoadingCourses(true);
+    setErrorCourses(null);
+
+    try {
+      const courses = await fetchData(`bootcamps/${bootcampId}/courses`);
+      setSelectedCourses(courses);
+      navigate(`/bootcamps/${bootcampId}/courses`);
+    } catch (error) {
+      setErrorCourses(error.message);
+    } finally {
+      setLoadingCourses(false);
+    }
+  };
+
+  console.log(handleCheckItOut);
 
   if (loading) return <p>Loading bootcamps...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -33,7 +56,12 @@ const Bootcamps = () => {
               <h3>{bootcamp.name}</h3>
               <p>{bootcamp.description}</p>
               {/* <p>{bootcamp.country}</p> */}
-              <button className={[style.list_button]}>Check It Out</button>
+              <button
+                className={[style.list_button]}
+                onClick={() => handleCheckItOut(bootcamp.id)}
+              >
+                Check It Out
+              </button>
             </div>
             <div>
               <img
