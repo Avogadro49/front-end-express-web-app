@@ -1,10 +1,10 @@
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const fetchData = async (endpoint) => {
-  // console.log("Base URL:", BASE_URL);
-  // console.log("Fetching URL", [BASE_URL, endpoint].join(""));
+  console.log("Base URL:", BASE_URL);
+  console.log("Fetching URL", [BASE_URL, endpoint].join("/"));
   try {
-    const response = await fetch([BASE_URL, endpoint].join(""));
+    const response = await fetch([BASE_URL, endpoint].join("/"));
 
     if (!response.ok) {
       throw new Error(`Error fetching ${endpoint}`);

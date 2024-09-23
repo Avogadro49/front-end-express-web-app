@@ -2,12 +2,12 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Bootcamps from "./components/Bootcamps";
-import Courses from "./components/Courses";
-import Navbar from "./components/Navbar";
-import SignUp from "./components/Signup";
-import Login from "./components/Login";
-import Home from "./components/HomePage";
+import Bootcamps from "./components/bootcamps/Bootcamps";
+import Courses from "./components/courses/Courses";
+import Navbar from "./components/navbar/Navbar";
+import SignUp from "./components/auth/Signup";
+import Login from "./components/auth/Login";
+import Home from "./pages/homePage/HomePage";
 
 const App = () => {
   return (

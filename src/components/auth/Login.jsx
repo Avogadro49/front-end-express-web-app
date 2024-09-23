@@ -1,27 +1,26 @@
-// eslint-disable-next-line no-unused-vars
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Signup.css";
+import style from "./Auth.module.css";
 
-const SignUp = () => {
+const Login = () => {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BASE_URL}auth/register`,
+        `${import.meta.env.VITE_BASE_URL}auth/login`,
         {
           method: "POST",
           headers: {
@@ -34,27 +33,19 @@ const SignUp = () => {
       const data = await response.json();
 
       if (response.ok) {
-        console.log("Sign-up successful:", data);
+        console.log("login successful", data);
         navigate("/");
       } else {
-        console.log("Sign-up failed:", data);
+        console.log("login failed", data);
       }
     } catch (error) {
-      console.log("Error during sign-up", error);
+      console.log(error);
     }
   };
 
   return (
-    <div className="form-container">
+    <div className={[style.form_container].join(" ")}>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Username"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
         <input
           type="email"
           name="email"
@@ -71,10 +62,12 @@ const SignUp = () => {
           onChange={handleChange}
           required
         />
-        <button type="submit">Sign Up</button>
+        <button type="submit" className={[style.signup_button].join(" ")}>
+          Log In
+        </button>
       </form>
     </div>
   );
 };
 
-export default SignUp;
+export default Login;
