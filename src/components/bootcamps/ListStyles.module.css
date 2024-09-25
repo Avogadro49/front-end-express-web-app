@@ -11,6 +11,7 @@
 }
 
 .list_item {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -43,7 +44,9 @@
 }
 
 .list_button {
-  align-self: flex-end;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
   border-radius: 8px;
   border: none;
   margin: 0.4em;
